@@ -1,31 +1,36 @@
 //const  P751 = require('/mnt/d/dev/node-sidh/build/Release/node-sidh.node');
-// @ts-check
+// @ts-nocheck
 //const { createPrivateA,createPrivateB, createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB, TEST }  = require('../include/node-sidh.node');
 
-const {assert, Assertion} = require('chai')
+const assert = require('assert').strict;
 const { SIDH } =require('../lib/index')
 let keyPair;
 let sender;
 
-let main = async () => {
-    let sidh = new SIDH();
-    keyPair = await sidh.createKeyPair()
-    console.log(keyPair);
-
-    sender = await sidh.senderKeys()
-    console.log(sender);
-
-    let shared1 = await sidh.sharedKey(keyPair.PrivateKey,sender.PublicKey)
-
-    let shared2 = await sidh.sharedKeySender(sender.PrivateKey,keyPair.PublicKey);
-
-    (shared1.toString('hex') === shared2.toString('hex') ? console.log('true'): console.log('false'));
+describe('SIDH TEST', ()=> {
+    it('should be equal', () =>{
+        let main = async () => {
+            let sidh = new SIDH();
+            keyPair = await sidh.createKeyPair()
+            console.log(keyPair);
+        
+            sender = await sidh.senderKeys()
+            console.log(sender);
+        
+            let shared1 = await sidh.sharedKey(keyPair.PrivateKey,sender.PublicKey)
+        
+            let shared2 = await sidh.sharedKeySender(sender.PrivateKey,keyPair.PublicKey);
+            console.log(shared1);
+        
+          //  (shared1.toString('hex') === shared2.toString('hex') ? console.log('true'): console.log('false'));  
+            assert.ok(shared1.toString('hex') === shared2.toString('hex'));
+        }
+        main();
+       // assert.ok(true)
+    })
+        
+    })
    
-}
-main();
-
-
-
 /*
 var PrivateKeyA;
 var PubKeyA;

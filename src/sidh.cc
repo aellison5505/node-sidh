@@ -47,12 +47,12 @@ void createKeyPairA(const Napi::CallbackInfo& info) {
 
   random_mod_order_A_SIDHp751(PrivateKeyA);
 
-  unsigned int i;
+  //unsigned int i;
 
-  for(i = 0; i < SIDH_SECRETKEYBYTES_A; i++) {
-        printf("%02X", (PrivateKeyA[i]));
-  }
-  printf("\n\n");
+  //for(i = 0; i < SIDH_SECRETKEYBYTES_A; i++) {
+ //       printf("%02X", (PrivateKeyA[i]));
+ // }
+  //printf("\n\n");
  // unsigned char* PrivateKey = info[0].As<Napi::Buffer<unsigned char>>().Data();
 
 //  unsigned char* PrivateKey1 = reinterpret_cast<unsigned char*>(info[0].As<Napi::Buffer<unsigned char>>().Data());
@@ -64,15 +64,15 @@ void createKeyPairA(const Napi::CallbackInfo& info) {
   
  
 
-  for(i = 0; i < SIDH_SECRETKEYBYTES_A; i++) {
-        printf("%02X", (PrivateKeyA[i]));
-  }
-  printf("\n\n");
+  //for(i = 0; i < SIDH_SECRETKEYBYTES_A; i++) {
+    //    printf("%02X", (PrivateKeyA[i]));
+  //}
+  //printf("\n\n");
 
-    for(i = 0; i < SIDH_PUBLICKEYBYTES; i++) {
-        printf("%02X", (PublicKeyA[i]));
-  }
-  printf("\n\n");
+   // for(i = 0; i < SIDH_PUBLICKEYBYTES; i++) {
+    //    printf("%02X", (PublicKeyA[i]));
+  //}
+  //printf("\n\n");
 
  
   cb.Call(env.Global(), {bufPriPKA, bufPubA});
@@ -96,26 +96,26 @@ void createKeyPairB(const Napi::CallbackInfo& info) {
 
 //  unsigned char* PrivateKey1 = reinterpret_cast<unsigned char*>(info[0].As<Napi::Buffer<unsigned char>>().Data());
   
-  unsigned int i;
+  //unsigned int i;
 
-  for(i = 0; i < SIDH_SECRETKEYBYTES_B; i++) {
-        printf("%02X", (PrivateKeyB[i]));
-  }
-  printf("\n\n");
+  //for(i = 0; i < SIDH_SECRETKEYBYTES_B; i++) {
+    //    printf("%02X", (PrivateKeyB[i]));
+  //}
+  //printf("\n\n");
 
   EphemeralKeyGeneration_B_SIDHp751(PrivateKeyB, PublicKeyB);
 
   
 
-  for(i = 0; i < SIDH_SECRETKEYBYTES_B; i++) {
-        printf("%02X", (PrivateKeyB[i]));
-  }
-  printf("\n\n");
+  //for(i = 0; i < SIDH_SECRETKEYBYTES_B; i++) {
+  //      printf("%02X", (PrivateKeyB[i]));
+  //}
+  //printf("\n\n");
 
-    for(i = 0; i < SIDH_PUBLICKEYBYTES; i++) {
-        printf("%02X", (PublicKeyB[i]));
-  }
-  printf("\n\n");
+    //for(i = 0; i < SIDH_PUBLICKEYBYTES; i++) {
+    //    printf("%02X", (PublicKeyB[i]));
+ // }
+  //printf("\n\n");
 
   Napi::Buffer<unsigned char> bufPriPKB = Napi::Buffer<unsigned char>::Copy(env,PrivateKeyB,SIDH_SECRETKEYBYTES_B);
   Napi::Buffer<unsigned char> bufPubB = Napi::Buffer<unsigned char>::Copy(env,PublicKeyB,SIDH_PUBLICKEYBYTES);
@@ -171,12 +171,12 @@ Napi::Value sharedKeyB(const Napi::CallbackInfo& info) {
   Napi::Buffer<unsigned char> retBuf5 = Napi::Buffer<unsigned char>::Copy(env,SharedSecretB,SIDH_BYTES);
 
   
-  unsigned int i;
-   for(i = 0; i < SIDH_BYTES; i++) {
-        printf("%02X", (SharedSecretB[i]));
-  }
-  printf("\n\n");
-
+  //unsigned int i;
+   //for(i = 0; i < SIDH_BYTES; i++) {
+   //     printf("%02X", (SharedSecretB[i]));
+  //}
+  //printf("\n\n");
+//
   return retBuf5;
 }
 
@@ -202,16 +202,16 @@ Napi::Value TEST(const Napi::CallbackInfo& info) {
     EphemeralSecretAgreement_A_SIDHp751(PrivateKeyA, PublicKeyB, SharedSecretA);          
     EphemeralSecretAgreement_B_SIDHp751(PrivateKeyB, PublicKeyA, SharedSecretB);           
 
-    int i;
+    //int i;
 
-    for(i = 0; i < 188; i++) {
-        printf("%X", (SharedSecretA[i]));
-    }
-    printf("\n\n");
-    for(i = 0; i < 188; i++) {
-        printf("%X", (SharedSecretB[i]));
-    }
-    printf("\n\n");
+    //for(i = 0; i < 188; i++) {
+     //   printf("%X", (SharedSecretA[i]));
+    //}
+    //printf("\n\n");
+    //for(i = 0; i < 188; i++) {
+    //    printf("%X", (SharedSecretB[i]));
+    //}
+    //printf("\n\n");
  
 
   Napi::Buffer<unsigned char> retBuf5 = Napi::Buffer<unsigned char>::Copy(env,SharedSecretB,SIDH_BYTES);

@@ -8,7 +8,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "rebuild": "node-gyp rebuild && rm ./src/node-sidh.node && cp ./build/Release/node-sidh.node ./src/node-sidh.node",
+    "rebuild": "node-gyp rebuild && rm ./include/node-sidh.node && cp ./build/Release/node-sidh.node ./include/node-sidh.node",
     "test": "mocha"
   },
   "repository": {

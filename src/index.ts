@@ -20,8 +20,8 @@ export class SIDH {
                 createKeyPairA((PrivateA, PubA) => {
                     this.PrivateKey = PrivateA;
                     this.PublicKey = PubA;
-                    console.log(PrivateA.toString('hex'), PrivateA.length);
-                    console.log(PubA.toString('hex'), PubA.length);
+                 //   console.log(PrivateA.toString('hex'), PrivateA.length);
+               //     console.log(PubA.toString('hex'), PubA.length);
                     res(this.keyPair);
                 });
             }catch(err1){
@@ -50,8 +50,8 @@ export class SIDH {
                 createKeyPairB((PrivateA, PubA) => {
                     this.SenderKey = PrivateA;
                     this.SenderPublic = PubA;
-                    console.log(PrivateA.toString('hex'), PrivateA.length);
-                    console.log(PubA.toString('hex'), PubA.length);
+             //       console.log(PrivateA.toString('hex'), PrivateA.length);
+               //     console.log(PubA.toString('hex'), PubA.length);
                     res(this.senderKeyPair);
                 });
             }catch(err1){
