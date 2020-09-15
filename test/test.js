@@ -2,34 +2,49 @@
 // @ts-nocheck
 //const { createPrivateA,createPrivateB, createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB, TEST }  = require('../include/node-sidh.node');
 
-const assert = require('assert').strict;
-const { SIDH } =require('../lib/index')
+const {SIDH } =require('../lib/index')
+
+const expect = require('chai').expect;
+
 let keyPair;
 let sender;
+let shared;
+let senderShared;
 
-describe('SIDH TEST', ()=> {
-    it('should be equal', () =>{
-        let main = async () => {
-            let sidh = new SIDH();
-            keyPair = await sidh.createKeyPair()
-            console.log(keyPair);
+let startTest = async () => {
+   
+    let sidh= new SIDH();
+    keyPair = await sidh.createKeyPair();
+    sender = await sidh.senderKeys();
+    shared = await sidh.sharedKey(keyPair.PrivateKey, sender.PublicKey);
+    senderShared = await sidh.sharedKeySender(sender.PrivateKey, keyPair.PublicKey);
+}
+
+describe('SIDH TEST', () =>  {
+    startTest();
+        describe('Initiator keys should be equal in length', () => {
+            it('Private Key', () =>{
+                expect(keyPair.PrivateKey.length).to.be.equal(47);
+            });
+            it('Private Key', () =>{
+                expect(keyPair.PublicKey.length).to.be.equal(564);
+            });   
+        });
+        describe('Return Sender keys should be equal in length', () => {
+            it('Private Key', () =>{
+                expect(sender.PrivateKey.length).to.be.equal(48);
+            });
+            it('Private Key', () =>{
+                expect(sender.PublicKey.length).to.be.equal(564);
+            });   
+        });
+        describe('Shared secret should be equal', () => {
+            it('Equal Secret', () =>{
+                expect(shared.toString('hex')).to.be.equal(senderShared.toString('hex'));
+            }); 
+        });
+});
         
-            sender = await sidh.senderKeys()
-            console.log(sender);
-        
-            let shared1 = await sidh.sharedKey(keyPair.PrivateKey,sender.PublicKey)
-        
-            let shared2 = await sidh.sharedKeySender(sender.PrivateKey,keyPair.PublicKey);
-            console.log(shared1);
-        
-          //  (shared1.toString('hex') === shared2.toString('hex') ? console.log('true'): console.log('false'));  
-            assert.ok(shared1.toString('hex') === shared2.toString('hex'));
-        }
-        main();
-       // assert.ok(true)
-    })
-        
-    })
    
 /*
 var PrivateKeyA;
@@ -79,5 +94,4 @@ a(PrivateKeyA, PubKeyA);
 //let test = TEST();
 
 //console.log(test.toString('hex'), test.length);
-
 */
