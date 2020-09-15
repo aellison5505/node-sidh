@@ -1,6 +1,6 @@
 {
   "name": "node-sidh",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Nodejs bindings to SIDH v3.3",
   "main": "index.js",
   "gypfile": true,
