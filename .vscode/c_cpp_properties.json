@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/mnt/d/dev/node-sidh/node_modules/node-addon-api/**",
+                "/home/aellison/.nvm/versions/node/v12.18.3/include/node/**",
+                "/mnt/d/dev/node-sidh/include/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64",
+            "compilerArgs": []
+        }
+    ],
+    "version": 4
+}

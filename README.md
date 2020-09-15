@@ -1,1 +1,1 @@
-Init
+Init - SIDH node interface
