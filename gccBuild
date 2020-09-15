@@ -1,0 +1,1 @@
+gcc -I/mnt/d/dev/node-sidh/include ./src/sidh.c -L./include -lsidh -o sidh
