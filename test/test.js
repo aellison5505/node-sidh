@@ -1,6 +1,4 @@
-//const  P751 = require('/mnt/d/dev/node-sidh/build/Release/node-sidh.node');
-// @ts-nocheck
-//const { createPrivateA,createPrivateB, createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB, TEST }  = require('../include/node-sidh.node');
+// @ts-check
 
 const {SIDH } =require('../lib/index')
 

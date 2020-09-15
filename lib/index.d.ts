@@ -3,6 +3,9 @@ export interface keys {
     PrivateKey: Buffer;
     PublicKey: Buffer;
 }
+/**
+ * This class uses post-crypto SIDH and creates keyPairs and the shared secret.
+ */
 export declare class SIDH {
     "PrivateKey": Buffer;
     "PublicKey": Buffer;

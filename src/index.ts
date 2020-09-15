@@ -6,6 +6,9 @@ export interface keys {
     PublicKey: Buffer;
 }
 
+/**
+ * This class uses post-crypto SIDH and creates keyPairs and the shared secret.
+ */
 export class SIDH {
 
     "PrivateKey": Buffer;
@@ -13,7 +16,6 @@ export class SIDH {
     "SenderKey":Buffer;
     "SenderPublic":Buffer;
     
-
     createKeyPair(): Promise<keys> {
         return new Promise((res,err) => {
             try{
