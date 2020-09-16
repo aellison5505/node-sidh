@@ -24,7 +24,7 @@ describe('SIDH TEST', () =>  {
             it('Private Key', () =>{
                 expect(keyPair.PrivateKey.length).to.be.equal(47);
             });
-            it('Private Key', () =>{
+            it('Public Key', () =>{
                 expect(keyPair.PublicKey.length).to.be.equal(564);
             });   
         });
@@ -32,7 +32,7 @@ describe('SIDH TEST', () =>  {
             it('Private Key', () =>{
                 expect(sender.PrivateKey.length).to.be.equal(48);
             });
-            it('Private Key', () =>{
+            it('Public Key', () =>{
                 expect(sender.PublicKey.length).to.be.equal(564);
             });   
         });

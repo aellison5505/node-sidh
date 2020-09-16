@@ -306,6 +306,11 @@ ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
                  $(join ^,node-sidh.target.mk)))),)
   include node-sidh.target.mk
 endif
+ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
+    $(findstring $(join ^,$(prefix)),\
+                 $(join ^,node-sike.target.mk)))),)
+  include node-sike.target.mk
+endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
 cmd_regen_makefile = cd $(srcdir); /home/aellison/.nvm/versions/node/v12.18.3/lib/node_modules/npm/node_modules/node-gyp/gyp/gyp_main.py -fmake --ignore-environment "--toplevel-dir=." -I/mnt/d/dev/node-sidh/build/config.gypi -I/home/aellison/.nvm/versions/node/v12.18.3/lib/node_modules/npm/node_modules/node-gyp/addon.gypi -I/home/aellison/.cache/node-gyp/12.18.3/include/node/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/home/aellison/.cache/node-gyp/12.18.3" "-Dnode_gyp_dir=/home/aellison/.nvm/versions/node/v12.18.3/lib/node_modules/npm/node_modules/node-gyp" "-Dnode_lib_file=/home/aellison/.cache/node-gyp/12.18.3/<(target_arch)/node.lib" "-Dmodule_root_dir=/mnt/d/dev/node-sidh" "-Dnode_engine=v8" binding.gyp

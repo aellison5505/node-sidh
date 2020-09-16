@@ -1,15 +1,5 @@
 #include <napi.h>
-#ifdef __cplusplus  
-extern "C" { 
-#endif 
-    #include "P751_api.h"
-    /* Declarations of this file */
-#ifdef __cplusplus 
-} 
-#endif 
-
-// all of your legacy C code here
-
+#include "sidh.h"
 
 Napi::Value createPrivateA(const Napi::CallbackInfo& info) {
 

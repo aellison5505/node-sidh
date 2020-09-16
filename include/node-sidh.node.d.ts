@@ -2,8 +2,6 @@
 
 
 
-
-
     export function createPrivateA():Buffer;
 
     export function createPrivateB():Buffer;

@@ -1,5 +1,6 @@
 
-import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB }  from '../include/node-sidh.node';
+import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB  }  from '../include/node-sidh.node';
+import { createKEMKeyPair } from '../include/node-sike';
 
 export interface keys {
     PrivateKey: Buffer;
@@ -11,11 +12,17 @@ export interface keys {
  */
 export class SIDH {
 
-    "PrivateKey": Buffer;
-    "PublicKey": Buffer;
-    "SenderKey":Buffer;
-    "SenderPublic":Buffer;
+    PrivateKey: Buffer;
+    PublicKey: Buffer;
+    SenderKey:Buffer;
+    SenderPublic:Buffer;
     
+    constructor() {
+        this.PrivateKey = Buffer.alloc(0);
+        this.PublicKey = Buffer.alloc(0);
+        this.SenderKey = Buffer.alloc(0);
+        this.SenderPublic = Buffer.alloc(0);
+    }
     createKeyPair(): Promise<keys> {
         return new Promise((res,err) => {
             try{
@@ -74,4 +81,31 @@ export class SIDH {
         });       
     }
 
+}
+
+export class sike {
+    PrivateKey: Buffer;
+    PublicKey: Buffer;
+
+    constructor() {
+        this.PrivateKey = Buffer.alloc(0);
+        this.PublicKey = Buffer.alloc(0);
+    }
+
+    createKeyPair(): Promise<keys> {
+        return new Promise<keys>((ret) => {
+            createKEMKeyPair((PriKey: Buffer, PubKey: Buffer) => {
+                this.PrivateKey = PriKey,
+                this.PublicKey = PubKey
+                ret(this.keyPair);
+            });
+        });
+    }
+
+    get keyPair(): keys {
+        return {
+            PrivateKey: this.PrivateKey,
+            PublicKey: this.PublicKey
+        }
+    }
 }

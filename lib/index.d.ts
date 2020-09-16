@@ -7,14 +7,22 @@ export interface keys {
  * This class uses post-crypto SIDH and creates keyPairs and the shared secret.
  */
 export declare class SIDH {
-    "PrivateKey": Buffer;
-    "PublicKey": Buffer;
-    "SenderKey": Buffer;
-    "SenderPublic": Buffer;
+    PrivateKey: Buffer;
+    PublicKey: Buffer;
+    SenderKey: Buffer;
+    SenderPublic: Buffer;
+    constructor();
     createKeyPair(): Promise<keys>;
     readonly keyPair: keys;
     readonly senderKeyPair: keys;
     senderKeys(): Promise<keys>;
     sharedKey(PrivateKey: Buffer, SenderPublicKey: Buffer): Promise<Buffer>;
     sharedKeySender(SenderPrivateKey: Buffer, PublicKey: Buffer): Promise<Buffer>;
+}
+export declare class sike {
+    PrivateKey: Buffer;
+    PublicKey: Buffer;
+    constructor();
+    createKeyPair(): Promise<keys>;
+    readonly keyPair: keys;
 }

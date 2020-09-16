@@ -1,0 +1,1 @@
+cmd_Release/obj.target/node-sike.node := g++ -shared -pthread -rdynamic -m64  -Wl,-soname=node-sike.node -o Release/obj.target/node-sike.node -Wl,--start-group Release/obj.target/node-sike/src/sike.o -Wl,--end-group -L/mnt/d/dev/node-sidh/include/ -lsidhComp
