@@ -13,8 +13,8 @@ export declare class SIDH {
     SenderPublic: Buffer;
     constructor();
     createKeyPair(): Promise<keys>;
-    readonly keyPair: keys;
-    readonly senderKeyPair: keys;
+    get keyPair(): keys;
+    get senderKeyPair(): keys;
     senderKeys(): Promise<keys>;
     sharedKey(PrivateKey: Buffer, SenderPublicKey: Buffer): Promise<Buffer>;
     sharedKeySender(SenderPrivateKey: Buffer, PublicKey: Buffer): Promise<Buffer>;
@@ -24,5 +24,7 @@ export declare class sike {
     PublicKey: Buffer;
     constructor();
     createKeyPair(): Promise<keys>;
-    readonly keyPair: keys;
+    get keyPair(): keys;
+    encrypt(publicKey: Buffer): Promise<[Buffer, Buffer]>;
+    decrypt(privateKey: Buffer, cipherBytes: Buffer): Promise<Buffer>;
 }

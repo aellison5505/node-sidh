@@ -1,6 +1,6 @@
 
-import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB  }  from '../include/node-sidh.node';
-import { createKEMKeyPair } from '../include/node-sike';
+import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB  }  from '../lib/node-sidh';
+import { createKEMKeyPair, KEMEncrypt, KEMDecrypt } from '../lib/node-sike';
 
 export interface keys {
     PrivateKey: Buffer;
@@ -107,5 +107,21 @@ export class sike {
             PrivateKey: this.PrivateKey,
             PublicKey: this.PublicKey
         }
+    }
+
+    encrypt(publicKey: Buffer): Promise<[Buffer, Buffer]> {
+        return new Promise<[Buffer, Buffer]>((ret) => {
+            KEMEncrypt(publicKey, (sBytes: Buffer, cBytes: Buffer) => {
+                ret([sBytes, cBytes]);
+            });
+        });
+    }
+
+    decrypt(privateKey: Buffer, cipherBytes: Buffer) {
+        return new Promise<Buffer>((ret) => {
+            KEMDecrypt(privateKey, cipherBytes, (sBytes) => {
+                ret(sBytes);
+            })
+        });
     }
 }
