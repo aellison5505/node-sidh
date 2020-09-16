@@ -9,8 +9,8 @@ export declare class SIDH {
     "SenderKey": Buffer;
     "SenderPublic": Buffer;
     createKeyPair(): Promise<keys>;
-    readonly keyPair: keys;
-    readonly senderKeyPair: keys;
+    get keyPair(): keys;
+    get senderKeyPair(): keys;
     senderKeys(): Promise<keys>;
     sharedKey(PrivateKey: Buffer, SenderPublicKey: Buffer): Promise<Buffer>;
     sharedKeySender(SenderPrivateKey: Buffer, PublicKey: Buffer): Promise<Buffer>;
