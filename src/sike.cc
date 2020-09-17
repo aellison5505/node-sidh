@@ -58,19 +58,21 @@ void KEMDecrypt(const Napi::CallbackInfo& info) {
 
   Napi::Buffer<unsigned char> cBytes = info[1].As<Napi::Buffer<unsigned char>>();
 
+  Napi::Buffer<unsigned char>sharedSecret = Napi::Buffer<unsigned char>::New(env, CRYPTO_BYTES);
+
   Napi::Function cb = info[2].As<Napi::Function>();
 
-  unsigned char sharedSecret[CRYPTO_BYTES];
+  //unsigned char sharedSecret[CRYPTO_BYTES];
 
-  memset(sharedSecret,0,CRYPTO_BYTES);
+  //memset(sharedSecret,0,CRYPTO_BYTES);
  
-  crypto_kem_dec_SIKEp751_compressed(sharedSecret,cBytes.Data(),privateKey.Data());
+  crypto_kem_dec_SIKEp751_compressed(sharedSecret.Data(),cBytes.Data(),privateKey.Data());
 
-  Napi::Buffer<unsigned char> bufSS = Napi::Buffer<unsigned char>::Copy(env,sharedSecret,CRYPTO_BYTES);
+ // Napi::Buffer<unsigned char> bufSS = Napi::Buffer<unsigned char>::Copy(env,sharedSecret,CRYPTO_BYTES);
   
 
 
-  cb.Call(env.Global(), {bufSS});
+  cb.Call(env.Global(), {sharedSecret});
 
 }
 
