@@ -1,5 +1,5 @@
 /// <reference types="node" />
-const { sike } = require('../lib/index');
+const { SIKE } = require('../lib/index');
 const expect = require('chai').expect
 
 
@@ -10,14 +10,9 @@ describe('SIKE TEST', () => {
 
     let publicKey = '0bR8zcdOTHwVuVSI3tu9UbRctnAH8vNv6aaJEkoQXHaByWVzzCDoVEFPxFg5Bx4EoLmV/y+Gzo7PS8wZy+w5iHpIguTFduYoijjKdPIP+c8WpkDLVXXmtfpRGzovXtEB2TDlLrJjy1B0jipvptaEqQwTeE5Tj2A1rCBAw/udfpnghLrqvVd7/RMS7uIsq+QEbn2UuR6PZinrlabGeDp5CJP4ctcc2ZVF12xkr488C+0oWH3UtsW8W35dem0Bqh+RUaJ9lJoro/p5qovZGlcyssAVMTmFPQcf9XBCGTLyy8AEktQNJVNRCz41QU1JZc8KVJuYdbu/o6wXJZflOwgIBKGpqdFGupp7wxmsckwJXzkLvie1tMLrv2PDvHfiwyBfR8R6qB5Lr4VexCbbQZISqVDukBlWzNl4VrwHKgQy4dyw58ud7mQGIvPq6EABAgM=';
 
-   // let kem;
-    let keyPair = {};
-    let sharedSecret;
-    let cryptoBytes;
-    let kem;
 
     before(()=>{
-        this.kem = new sike();
+        this.kem = new SIKE();
     });
     
     this.keyPair = {};

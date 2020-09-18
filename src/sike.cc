@@ -1,66 +1,61 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include "P751_compressed_api.h"
-
-#ifdef __cplusplus
-}
-#endif
+#include "sike.h"
 #include <napi.h>
 
-void createKEMKeyPair(const Napi::CallbackInfo& info) {
-  Napi::Env env = info.Env();
+using namespace Napi;
 
-  Napi::Function cb = info[0].As<Napi::Function>();
+void createKEMKeyPair(const CallbackInfo& info) {
+  Env env = info.Env();
 
-  unsigned char PrivateKey[CRYPTO_SECRETKEYBYTES];
-  unsigned char PublicKey[CRYPTO_PUBLICKEYBYTES];
+  Function cb = info[0].As<Function>();
 
-  crypto_kem_keypair_SIKEp751_compressed(PublicKey, PrivateKey);
+  //unsigned char PrivateKey[CRYPTO_SECRETKEYBYTES];
+  //unsigned char PublicKey[CRYPTO_PUBLICKEYBYTES];
 
-   Napi::Buffer<unsigned char> bufKey = Napi::Buffer<unsigned char>::Copy(env,PrivateKey,CRYPTO_SECRETKEYBYTES);
+  Buffer<unsigned char> PrivateKey = Buffer<unsigned char>::New(env, CRYPTO_SECRETKEYBYTES);
 
-   Napi::Buffer<unsigned char> bufPub = Napi::Buffer<unsigned char>::Copy(env,PublicKey,CRYPTO_PUBLICKEYBYTES);
-  
+  Buffer<unsigned char> PublicKey = Buffer<unsigned char>::New(env, CRYPTO_PUBLICKEYBYTES);
 
+  crypto_kem_keypair_SIKEp751_compressed(PublicKey.Data(), PrivateKey.Data());
 
-  cb.Call(env.Global(), {bufKey, bufPub});
+  //Buffer<unsigned char> bufKey = Buffer<unsigned char>::Copy(env,PrivateKey,CRYPTO_SECRETKEYBYTES);
+
+  //Buffer<unsigned char> bufPub = Buffer<unsigned char>::Copy(env,PublicKey,CRYPTO_PUBLICKEYBYTES);
+
+  cb.Call(env.Global(), {PrivateKey, PublicKey});
 
 }
 
-void KEMEncrypt(const Napi::CallbackInfo& info) {
-  Napi::Env env = info.Env();
+void KEMEncrypt(const CallbackInfo& info) {
+  Env env = info.Env();
 
-  Napi::Buffer<unsigned char> publicKey = info[0].As<Napi::Buffer<unsigned char>>();
+  Buffer<unsigned char> publicKey = info[0].As<Buffer<unsigned char>>();
 
-  Napi::Function cb = info[1].As<Napi::Function>();
+  Function cb = info[1].As<Function>();
 
-  unsigned char sharedSecret[CRYPTO_BYTES];
-  unsigned char cBytes[CRYPTO_CIPHERTEXTBYTES];
+  Buffer<unsigned char> sharedSecret = Buffer<unsigned char>::New(env, CRYPTO_BYTES);
 
-  memset(sharedSecret,0,CRYPTO_BYTES);
+  Buffer<unsigned char> cBytes = Buffer<unsigned char>::New(env, CRYPTO_CIPHERTEXTBYTES);
+
+  memset(sharedSecret.Data(), 0, CRYPTO_BYTES);
  
-  crypto_kem_enc_SIKEp751_compressed(cBytes,sharedSecret,(unsigned char*)publicKey.Data());
-
-   Napi::Buffer<unsigned char> bufSS = Napi::Buffer<unsigned char>::Copy(env,sharedSecret,CRYPTO_BYTES);
-
-   Napi::Buffer<unsigned char> bufCrypt = Napi::Buffer<unsigned char>::Copy(env,cBytes,CRYPTO_CIPHERTEXTBYTES);
+  crypto_kem_enc_SIKEp751_compressed(cBytes.Data(),sharedSecret.Data(),publicKey.Data());
   
-  cb.Call(env.Global(), {bufSS, bufCrypt});
+  cb.Call(env.Global(), {sharedSecret,cBytes});
+
+  //return json_string;
 
 }
 
-void KEMDecrypt(const Napi::CallbackInfo& info) {
-  Napi::Env env = info.Env();
+void KEMDecrypt(const CallbackInfo& info) {
+  Env env = info.Env();
 
-  Napi::Buffer<unsigned char> privateKey = info[0].As<Napi::Buffer<unsigned char>>();
+  Buffer<unsigned char> privateKey = info[0].As<Buffer<unsigned char>>();
 
-  Napi::Buffer<unsigned char> cBytes = info[1].As<Napi::Buffer<unsigned char>>();
+  Buffer<unsigned char> cBytes = info[1].As<Buffer<unsigned char>>();
 
-  Napi::Buffer<unsigned char>sharedSecret = Napi::Buffer<unsigned char>::New(env, CRYPTO_BYTES);
+  Buffer<unsigned char>sharedSecret = Buffer<unsigned char>::New(env, CRYPTO_BYTES);
 
-  Napi::Function cb = info[2].As<Napi::Function>();
+  Function cb = info[2].As<Function>();
 
   //unsigned char sharedSecret[CRYPTO_BYTES];
 
@@ -68,7 +63,7 @@ void KEMDecrypt(const Napi::CallbackInfo& info) {
  
   crypto_kem_dec_SIKEp751_compressed(sharedSecret.Data(),cBytes.Data(),privateKey.Data());
 
- // Napi::Buffer<unsigned char> bufSS = Napi::Buffer<unsigned char>::Copy(env,sharedSecret,CRYPTO_BYTES);
+ // Buffer<unsigned char> bufSS = Buffer<unsigned char>::Copy(env,sharedSecret,CRYPTO_BYTES);
   
 
 
@@ -76,13 +71,13 @@ void KEMDecrypt(const Napi::CallbackInfo& info) {
 
 }
 
-Napi::Object Init(Napi::Env env, Napi::Object exports) {
-  exports.Set(Napi::String::New(env, "createKEMKeyPair"),
-              Napi::Function::New(env, createKEMKeyPair));
-   exports.Set(Napi::String::New(env, "KEMEncrypt"),
-              Napi::Function::New(env, KEMEncrypt));
-  exports.Set(Napi::String::New(env, "KEMDecrypt"),
-              Napi::Function::New(env, KEMDecrypt));
+Object Init(Env env, Object exports) {
+  exports.Set(String::New(env, "createKEMKeyPair"),
+              Function::New(env, createKEMKeyPair));
+   exports.Set(String::New(env, "KEMEncrypt"),
+              Function::New(env, KEMEncrypt));
+  exports.Set(String::New(env, "KEMDecrypt"),
+              Function::New(env, KEMDecrypt));
   return exports;
 }
 

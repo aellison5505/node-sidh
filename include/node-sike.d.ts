@@ -13,9 +13,10 @@
      * 
      * @returns SharedBytes[32], CryptoBytes
      */
-    export function KEMEncrypt(PublicKey: Buffer,cb: (SharedBytes: Buffer, CryptoBytes: Buffer) => void)
+   // export function KEMEncrypt(PublicKey: Buffer)
+     export function KEMEncrypt(PublicKey: Buffer,cb: (SharedBytes: Buffer, CryptoBytes: Buffer) => void)
     /**
-     * Takes private key and Encrypted bytes; return decrypted 
+     * Takes private key and Encrypted bytes; returns decrypted 
      * @param PrivateKey 
      * @param CryptoBytes 
      * @param cb 

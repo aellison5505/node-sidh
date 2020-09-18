@@ -4,41 +4,39 @@ const {SIDH } =require('../lib/index')
 
 const expect = require('chai').expect;
 
-let keyPair;
-let sender;
-let shared;
-let senderShared;
-
-let startTest = async () => {
-   
-    let sidh= new SIDH();
-    keyPair = await sidh.createKeyPair();
-    sender = await sidh.senderKeys();
-    shared = await sidh.sharedKey(keyPair.PrivateKey, sender.PublicKey);
-    senderShared = await sidh.sharedKeySender(sender.PrivateKey, keyPair.PublicKey);
-}
-
 describe('SIDH TEST', () =>  {
-    startTest();
+    before(() => {
+        this.sidh = new SIDH();
+    });
         describe('Initiator keys should be equal in length', () => {
+            before(async () => {
+                this.keyPair = await this.sidh.createKeyPair();
+            }); 
             it('Private Key', () =>{
-                expect(keyPair.PrivateKey.length).to.be.equal(47);
+                expect(this.keyPair.PrivateKey.length).to.be.equal(47);
             });
             it('Public Key', () =>{
-                expect(keyPair.PublicKey.length).to.be.equal(564);
+                expect(this.keyPair.PublicKey.length).to.be.equal(564);
             });   
         });
         describe('Return Sender keys should be equal in length', () => {
+            before(async () => {
+                this.sender = await this.sidh.senderKeys();
+            }); 
             it('Private Key', () =>{
-                expect(sender.PrivateKey.length).to.be.equal(48);
+                expect(this.sender.PrivateKey.length).to.be.equal(48);
             });
             it('Public Key', () =>{
-                expect(sender.PublicKey.length).to.be.equal(564);
+                expect(this.sender.PublicKey.length).to.be.equal(564);
             });   
         });
         describe('Shared secret should be equal', () => {
+            before(async () => {
+                this.shared = await this.sidh.sharedKey(this.keyPair.PrivateKey, this.sender.PublicKey);
+                this.senderShared = await this.sidh.sharedKeySender(this.sender.PrivateKey, this.keyPair.PublicKey);
+            });
             it('Equal Secret', () =>{
-                expect(shared.toString('hex')).to.be.equal(senderShared.toString('hex'));
+                expect(this.shared.toString('hex')).to.be.equal(this.senderShared.toString('hex'));
             }); 
         });
 });
