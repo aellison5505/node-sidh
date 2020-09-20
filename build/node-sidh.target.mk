@@ -52,7 +52,8 @@ INCS_Debug := \
 	-I/home/aellison/.cache/node-gyp/12.18.3/deps/zlib \
 	-I/home/aellison/.cache/node-gyp/12.18.3/deps/v8/include \
 	-I/mnt/d/dev/node-sidh/node_modules/node-addon-api \
-	-I/mnt/d/dev/node-sidh/include
+	-I$(srcdir)/include \
+	-I$(srcdir)/node_modules/node-addon-api
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=node-sidh' \
@@ -101,7 +102,8 @@ INCS_Release := \
 	-I/home/aellison/.cache/node-gyp/12.18.3/deps/zlib \
 	-I/home/aellison/.cache/node-gyp/12.18.3/deps/v8/include \
 	-I/mnt/d/dev/node-sidh/node_modules/node-addon-api \
-	-I/mnt/d/dev/node-sidh/include
+	-I$(srcdir)/include \
+	-I$(srcdir)/node_modules/node-addon-api
 
 OBJS := \
 	$(obj).target/$(TARGET)/src/sidh.o
