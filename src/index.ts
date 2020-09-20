@@ -28,6 +28,10 @@ export class SIDH {
         this.SenderKey = Buffer.alloc(0);
         this.SenderPublic = Buffer.alloc(0);
     }
+    /**
+     * Creates a key pair
+     * @returns key object
+     */
     createKeyPair(): Promise<keys> {
         return new Promise((res,err) => {
             try{
