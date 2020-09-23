@@ -64,7 +64,7 @@ export class SIDH {
 
     createPubA(privateKey: Buffer): Promise<Buffer> {
         return new Promise((res,err) => {
-            let pubKey = createPublicA(this.PrivateKey);
+            let pubKey = createPublicA(privateKey);
             res(pubKey);
         });
     }
