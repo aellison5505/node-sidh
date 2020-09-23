@@ -13,6 +13,21 @@ Napi::Value createPrivateA(const Napi::CallbackInfo& info) {
   return retBuf;
 }
 
+Napi::Value createPublicA(const Napi::CallbackInfo& info) {
+
+  //unsigned char PrivateKeyA[SIDH_SECRETKEYBYTES_A];
+  Napi::Env env = info.Env();
+
+  Napi::Buffer<unsigned char> PublicKeyA = Napi::Buffer<unsigned char>::New(env,SIDH_PUBLICKEYBYTES);
+
+  Napi::Buffer<unsigned char> PrivateKeyA = info[0].As<Napi::Buffer<unsigned char>>();
+
+  EphemeralKeyGeneration_A_SIDHp751(PrivateKeyA.Data(), PublicKeyA.Data());
+
+  //Napi::Buffer<unsigned char> retBuf = Napi::Buffer<unsigned char>::Copy(env,PrivateKeyA,SIDH_SECRETKEYBYTES_A);
+  return PublicKeyA;
+}
+
 Napi::Value createPrivateB(const Napi::CallbackInfo& info) {
 
    unsigned char PrivateKeyB[SIDH_SECRETKEYBYTES_B];
