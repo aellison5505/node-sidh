@@ -229,6 +229,8 @@ Napi::Value TEST(const Napi::CallbackInfo& info) {
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "createPrivateA"),
               Napi::Function::New(env, createPrivateA));
+  exports.Set(Napi::String::New(env, "createPublicA"),
+              Napi::Function::New(env, createPublicA));
   exports.Set(Napi::String::New(env, "createPrivateB"),
               Napi::Function::New(env, createPrivateB));
   exports.Set(Napi::String::New(env, "createKeyPairA"),

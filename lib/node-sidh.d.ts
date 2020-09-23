@@ -1,8 +1,10 @@
 /// <reference types="node" />
 
+
+
     export function createPrivateA():Buffer;
 
-    export function createPublicA(PrivateKeyA: Buffer): Buffer;
+    export function createPublicA(privateKeyA: Buffer):Buffer;
 
     export function createPrivateB():Buffer;
 

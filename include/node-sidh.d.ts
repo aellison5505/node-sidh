@@ -4,6 +4,8 @@
 
     export function createPrivateA():Buffer;
 
+    export function createPublicA(privateKeyA: Buffer):Buffer;
+
     export function createPrivateB():Buffer;
 
     export function createKeyPairA(cb: (PrivateKeyA: Buffer, PublicKeyA: Buffer) => void): void

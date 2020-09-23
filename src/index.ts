@@ -1,5 +1,5 @@
 
-import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB  }  from '../lib/node-sidh';
+import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB, createPublicA  }  from '../lib/node-sidh';
 import { createKEMKeyPair, KEMEncrypt, KEMDecrypt } from '../lib/node-sike';
 
 /**
@@ -60,6 +60,13 @@ export class SIDH {
             PrivateKey: this.SenderKey,
             PublicKey: this.SenderPublic
         }
+    }
+
+    createPubA(privateKey: Buffer) {
+        return new Promise((res,err) => {
+            let pubKey = createPublicA(this.PrivateKey);
+            res(pubKey);
+        });
     }
 
     senderKeys():Promise<keys> {

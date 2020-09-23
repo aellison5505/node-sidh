@@ -11,6 +11,7 @@ describe('SIDH TEST', () =>  {
         describe('Initiator keys should be equal in length', () => {
             before(async () => {
                 this.keyPair = await this.sidh.createKeyPair();
+                await this.sidh.createPubA(this.keyPair.PrivateKey);
             }); 
             it('Private Key', () =>{
                 expect(this.keyPair.PrivateKey.length).to.be.equal(47);

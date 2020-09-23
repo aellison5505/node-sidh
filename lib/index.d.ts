@@ -17,9 +17,14 @@ export declare class SIDH {
     SenderKey: Buffer;
     SenderPublic: Buffer;
     constructor();
+    /**
+     * Creates a key pair
+     * @returns key object
+     */
     createKeyPair(): Promise<keys>;
     get keyPair(): keys;
     get senderKeyPair(): keys;
+    createPubA(privateKey: Buffer): Promise<unknown>;
     senderKeys(): Promise<keys>;
     sharedKey(PrivateKey: Buffer, SenderPublicKey: Buffer): Promise<Buffer>;
     sharedKeySender(SenderPrivateKey: Buffer, PublicKey: Buffer): Promise<Buffer>;
