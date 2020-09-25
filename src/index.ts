@@ -162,10 +162,11 @@ export class SIKE {
 
 export class Sha3 {
 
-    shake256(input: Buffer, outLength: Number): Promise<Buffer> {
+    shake256(input: Buffer, outLength: number): Promise<Buffer> {
         return new Promise<Buffer>((ret) => {
-            let hash = shake256(outLength,input);
-            ret(hash);
+            let out = Buffer.alloc(outLength, 0);
+            shake256(outLength,input, out);
+            ret(out);
         });
         
     }

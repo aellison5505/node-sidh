@@ -12,6 +12,6 @@ extern "C" {
 #endif
 #include <napi.h>
 
-Napi::Value _shake256(const Napi::CallbackInfo& info);
+Napi::Number _shake256(const Napi::CallbackInfo& info);
 
 #endif
