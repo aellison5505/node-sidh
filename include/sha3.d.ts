@@ -1,3 +1,3 @@
 /// <reference types="node" />
 
-export function shake256(outlen: Number, input: Buffer):Buffer;
+export function shake256(outlen: Number, input: Buffer):Promise<Buffer>;
