@@ -1,7 +1,7 @@
 
 import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB, createPublicA  }  from '../lib/node-sidh';
 import { createKEMKeyPair, KEMEncrypt, KEMDecrypt } from '../lib/node-sike';
-
+import { shake256 } from '../lib/sha3';
 /**
  * Keys interface
  * PrivateJey: Buffer
@@ -157,5 +157,16 @@ export class SIKE {
                 ret(sBytes);
             })
         });
+    }
+}
+
+export class Sha3 {
+
+    shake256(input: Buffer, outLength: Number): Promise<Buffer> {
+        return new Promise<Buffer>((ret) => {
+            let hash = shake256(outLength,input);
+            ret(hash);
+        });
+        
     }
 }

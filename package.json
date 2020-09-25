@@ -9,7 +9,7 @@
   },
   "scripts": {
     "watch": "tsc -w",
-    "copy-nodes": "cp ./build/Release/node-sike.node ./lib/node-sike.node && cp ./build/Release/node-sidh.node ./lib/node-sidh.node && cp ./include/node-sike.d.ts ./lib/ && cp ./include/node-sidh.d.ts ./lib/",
+    "copy-nodes": "cp ./build/Release/node-sike.node ./lib/node-sike.node && cp ./build/Release/node-sidh.node ./lib/node-sidh.node && cp ./include/node-sike.d.ts ./lib/ && cp ./include/node-sidh.d.ts ./lib/ && cp ./build/Release/sha3.node ./include/sha3.d.ts ./lib/",
     "rebuild": "node-gyp rebuild && npm run copy-nodes",
     "test": "mocha"
   },

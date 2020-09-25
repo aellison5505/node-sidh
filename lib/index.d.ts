@@ -55,3 +55,6 @@ export declare class SIKE {
      */
     decrypt(privateKey: Buffer, cipherBytes: Buffer): Promise<Buffer>;
 }
+export declare class Sha3 {
+    shake256(input: Buffer, outLength: Number): Promise<Buffer>;
+}

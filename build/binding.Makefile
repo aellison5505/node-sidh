@@ -3,4 +3,4 @@
 export builddir_name ?= ./build/.
 .PHONY: all
 all:
-	$(MAKE) node-sidh node-sike
+	$(MAKE) sha3 node-sidh node-sike
