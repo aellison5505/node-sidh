@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include "fips202.h"
+#include "random.h"
 
 #ifdef __cplusplus
 }

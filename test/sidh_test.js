@@ -8,6 +8,14 @@ describe('SIDH TEST', () =>  {
     before(() => {
         this.sidh = new SIDH();
     });
+        describe('create random bytes', () => {
+            before(async () =>{
+                this.bytes = await this.sidh.randomBytes(64);
+            });
+            it('should return bytes', () => {
+                expect(this.bytes.length).to.equal(64);
+            });
+        });
         describe('Initiator keys should be equal in length', () => {
             before(async () => {
                 this.keyPair = await this.sidh.createKeyPair();

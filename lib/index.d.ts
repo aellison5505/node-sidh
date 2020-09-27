@@ -17,6 +17,7 @@ export declare class SIDH {
     SenderKey: Buffer;
     SenderPublic: Buffer;
     constructor();
+    randomBytes(length: number): Promise<Buffer>;
     /**
      * Creates a key pair
      * @returns key object

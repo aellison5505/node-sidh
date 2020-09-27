@@ -1,6 +1,7 @@
 /// <reference types="node" />
 
 
+    export function random(random: Buffer, length: number): number;
 
     export function createPrivateA():Buffer;
 

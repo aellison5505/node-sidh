@@ -7,7 +7,7 @@ Release/obj.target/node-sidh/src/sidh.o: ../src/sidh.cc \
  /home/aellison/.cache/node-gyp/12.18.3/include/node/node_api_types.h \
  /mnt/d/dev/node-sidh/node_modules/node-addon-api/napi-inl.h \
  /mnt/d/dev/node-sidh/node_modules/node-addon-api/napi-inl.deprecated.h \
- ../src/sidh.h ../include/P751_api.h
+ ../src/sidh.h ../include/P751_api.h ../include/random.h
 ../src/sidh.cc:
 /mnt/d/dev/node-sidh/node_modules/node-addon-api/napi.h:
 /home/aellison/.cache/node-gyp/12.18.3/include/node/node_api.h:
@@ -18,3 +18,4 @@ Release/obj.target/node-sidh/src/sidh.o: ../src/sidh.cc \
 /mnt/d/dev/node-sidh/node_modules/node-addon-api/napi-inl.deprecated.h:
 ../src/sidh.h:
 ../include/P751_api.h:
+../include/random.h:

@@ -1,6 +1,18 @@
 #include <napi.h>
 #include "sidh.h"
 
+Napi::Number randomBytes(const Napi::CallbackInfo& info) {
+  
+  //Napi::Env env = info.Env();
+
+  Napi::Buffer<unsigned char> randomNum = info[0].As<Napi::Buffer<unsigned char>>();
+
+  Napi::Number len = info[1].As<Napi::Number>();
+    randombytes(randomNum.Data(), len.DoubleValue());
+
+  return Napi::Number::New(info.Env(), 0);
+}
+
 Napi::Value createPrivateA(const Napi::CallbackInfo& info) {
 
   unsigned char PrivateKeyA[SIDH_SECRETKEYBYTES_A];
@@ -227,6 +239,8 @@ Napi::Value TEST(const Napi::CallbackInfo& info) {
 
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
+  exports.Set(Napi::String::New(env, "random"),
+              Napi::Function::New(env, randomBytes));
   exports.Set(Napi::String::New(env, "createPrivateA"),
               Napi::Function::New(env, createPrivateA));
   exports.Set(Napi::String::New(env, "createPublicA"),
