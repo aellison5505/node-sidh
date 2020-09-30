@@ -1,1 +1,0 @@
-cmd_Release/obj.target/sha3.node := g++ -shared -pthread -rdynamic -m64  -Wl,-soname=sha3.node -o Release/obj.target/sha3.node -Wl,--start-group Release/obj.target/sha3/src/sha3.o -Wl,--end-group -L/mnt/d/dev/node-sidh/include/ -lsha3
