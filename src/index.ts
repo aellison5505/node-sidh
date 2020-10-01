@@ -1,7 +1,7 @@
 
 import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB, createPublicA, random  }  from '../lib/node-sidh';
 import { createKEMKeyPair, KEMEncrypt, KEMDecrypt } from '../lib/node-sike';
-import { shake256 } from '../lib/sha3';
+import { shake256 } from '../lib/node-sha3';
 /**
  * Keys interface
  * PrivateJey: Buffer

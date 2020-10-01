@@ -1,12 +1,13 @@
 
+project(objSike C)
+
 set(CMAKE_POSITION_INDEPENDENT_CODE true)
 set (CMAKE_C_STANDARD 11)
 
-add_compile_options(-O3 _AMD64_ _GENERIC_ __NIX__ -march=native)
+add_compile_options(-O3 -D_AMD64_ -D_GENERIC_  -D__NIX__ -march=native)
 
-file(GLOB SOURCE_FILES "sha3/*.h" "sha/*.c")
+add_subdirectory(sha3)
+add_subdirectory(random)
+add_subdirectory(P751)
 
-add_library(libsike OBJECT ${SOURCE_FILES})
-
-set_target_properties(libsike PROPERTIES LINKER_LANGUAGE C)
 
