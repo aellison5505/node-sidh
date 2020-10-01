@@ -3,14 +3,13 @@
   "version": "0.9.0",
   "description": "Nodejs bindings to SIDH v3.3",
   "main": "lib/index.js",
-  "gypfile": true,
   "directories": {
     "lib": "lib"
   },
   "scripts": {
     "watch": "tsc -w",
     "copy-nodes": "cp ./build/Release/node-sike.node ./lib/node-sike.node && cp ./build/Release/node-sidh.node ./lib/node-sidh.node && cp ./include/node-sike.d.ts ./lib/ && cp ./include/node-sidh.d.ts ./lib/ && cp ./build/Release/sha3.node ./include/sha3.d.ts ./lib/",
-    "rebuild": "node-gyp rebuild && npm run copy-nodes",
+    "rebuild": "npx cmake-js clean && npx cmake-js compile",
     "test": "mocha"
   },
   "repository": {
