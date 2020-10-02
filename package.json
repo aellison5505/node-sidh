@@ -1,6 +1,6 @@
 {
   "name": "node-sidh",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Nodejs bindings to SIDH v3.3",
   "main": "lib/index.js",
   "directories": {
@@ -8,10 +8,10 @@
   },
   "scripts": {
     "watch": "tsc -w",
-    "install" : "npm run rebuild",
+    "install": "npm run rebuild",
     "rebuild": "npm run clean && npx cmake-js compile && node script/move.js",
     "postinstall": "npm run test",
-    "clean" : "npx cmake-js clean && node script/clean.js",
+    "clean": "npx cmake-js clean && node script/clean.js",
     "test": "mocha"
   },
   "repository": {
