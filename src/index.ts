@@ -1,5 +1,5 @@
 
-import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB, createPublicA, random  }  from '../lib/node-sidh';
+import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB, createPublicA, random }  from '../lib/node-sidh';
 import { createKEMKeyPair, KEMEncrypt, KEMDecrypt } from '../lib/node-sike';
 import { shake256 } from '../lib/node-sha3';
 /**
@@ -29,6 +29,10 @@ export class SIDH {
         this.SenderPublic = Buffer.alloc(0);
     }
 
+    /**
+     * Produces random bytes
+     * @param length bytes
+     */
     randomBytes(length: number): Promise<Buffer> {
         return new Promise(async (res,err) => {
             let retBuf = Buffer.alloc(length);
