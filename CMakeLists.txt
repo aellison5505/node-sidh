@@ -4,6 +4,13 @@ add_definitions(-DNAPI_EXPERIMENTAL)
 add_definitions(-DNAPI_VERSION=3)
 #set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 
+
+IF(WIN32)
+    add_compile_options(/O2 /D_AMD64_ /D_GENERIC_  /D__WINDOWS__)
+ELSE()
+    add_compile_options(-O3 -D_AMD64_ -D_GENERIC_  -D__NIX__ -march=native)
+ENDIF()
+
 project(lib-SI CXX)
 
 message(${CMAKE_HOST_SYSTEM_NAME}-${CMAKE_HOST_SYSTEM_PROCESSOR})
