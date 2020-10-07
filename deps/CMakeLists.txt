@@ -12,8 +12,10 @@ ELSE()
     add_compile_options(-O3 -D_AMD64_ -D_GENERIC_  -D__NIX__ -march=native)
 ENDIF()
 
+include_directories(sha3 random P751)
+
 add_subdirectory(sha3)
 add_subdirectory(random)
 add_subdirectory(P751)
- 
+
 
