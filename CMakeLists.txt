@@ -8,9 +8,11 @@ add_definitions(-DNAPI_VERSION=3)
 IF(WIN32)
     add_compile_options(/O2 /D_AMD64_ /D_GENERIC_  /D__WINDOWS__)
     add_definitions(/D__WINDOWS__ /D_AMD64_ /D_GENERIC_)
+    set(compDef _AMD64_ _GENERIC_ __WINDOWS__)
 ELSE()
     add_compile_options(-O3 -D_AMD64_ -D_GENERIC_  -D__NIX__ -march=native)
-    add_definitions(-D__WINDOWS__ -D_AMD64_ -D_GENERIC_)
+    add_definitions(-D__NIX__  -D_AMD64_ -D_GENERIC_)
+    set(compDef _AMD64_ _GENERIC_ __NIX__ )
 ENDIF()
 
 project(lib-SI CXX)
@@ -37,6 +39,12 @@ target_link_libraries(node-sidh ${CMAKE_JS_LIB})
 target_link_libraries(node-sike ${CMAKE_JS_LIB})
 
 target_link_libraries(node-sha3 ${CMAKE_JS_LIB})
+
+target_compile_definitions(node-sidh PUBLIC ${compDef})
+
+target_compile_definitions(node-sike PUBLIC ${compDef})
+
+target_compile_definitions(node-sha3 PUBLIC ${compDef})
 
 set_target_properties(node-sidh node-sike node-sha3 PROPERTIES PREFIX "" SUFFIX ".node")
 
