@@ -1,6 +1,6 @@
 {
   "name": "node-sidh",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Nodejs bindings to SIDH v3.3",
   "main": "lib/index.js",
   "directories": {
