@@ -34,11 +34,11 @@ add_library(node-sike SHARED $<TARGET_OBJECTS:sike> $<TARGET_OBJECTS:Shake256> $
 
 add_library(node-sha3 SHARED $<TARGET_OBJECTS:Shake256> $<TARGET_OBJECTS:sha3>)
 
-target_link_libraries(node-sidh ${CMAKE_JS_LIB})
+target_link_libraries(node-sidh ${CMAKE_JS_LIB} Bcrypt.lib)
 
-target_link_libraries(node-sike ${CMAKE_JS_LIB})
+target_link_libraries(node-sike ${CMAKE_JS_LIB} Bcrypt.lib)
 
-target_link_libraries(node-sha3 ${CMAKE_JS_LIB})
+target_link_libraries(node-sha3 ${CMAKE_JS_LIB} Bcrypt.lib)
 
 target_compile_definitions(node-sidh PUBLIC ${compDef})
 
