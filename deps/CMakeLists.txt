@@ -4,6 +4,8 @@ project(objSike C)
 set(CMAKE_POSITION_INDEPENDENT_CODE true)
 set (CMAKE_C_STANDARD 11)
 
+set (WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
 IF(WIN32)
     add_compile_options(/O2 /D_AMD64_ /D_GENERIC_  /D__WINDOWS__)
 ELSE()
