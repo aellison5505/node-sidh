@@ -7,8 +7,10 @@ add_definitions(-DNAPI_VERSION=3)
 
 IF(WIN32)
     add_compile_options(/O2 /D_AMD64_ /D_GENERIC_  /D__WINDOWS__)
+    add_definitions(/D__WINDOWS__ /D_AMD64_ /D_GENERIC_)
 ELSE()
     add_compile_options(-O3 -D_AMD64_ -D_GENERIC_  -D__NIX__ -march=native)
+    add_definitions(-D__WINDOWS__ -D_AMD64_ -D_GENERIC_)
 ENDIF()
 
 project(lib-SI CXX)
