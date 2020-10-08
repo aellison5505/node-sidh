@@ -12,7 +12,8 @@
     "rebuild": "npm run clean && npx cmake-js compile && node script/move.js",
     "postinstall": "npm run test",
     "clean": "npx cmake-js clean && node script/clean.js",
-    "test": "mocha"
+    "test": "mocha",
+    "build-docs": "touch ./readme.md && rm ./readme.md && npx typedoc toc --mode modules --theme markdown --out /mnt/d/dev/node-sidh/docs --readme /mnt/d/dev/node-sidh/readmeHeader/readhead.md /mnt/d/dev/node-sidh/src && npx concat-md --decrease-title-levels ./docs > README.md"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,8 @@
     "@types/mocha": "^8.0.3",
     "@types/node": "^14.10.1",
     "tsdoc": "0.0.4",
-    "typedoc": "^0.19.1",
+    "typedoc": "^0.19.2",
+    "typedoc-plugin-markdown": "^3.0.7",
     "typescript": "^4.0.2"
   },
   "dependencies": {
