@@ -5,6 +5,8 @@
 
 > [Globals](#globalsmd)
 
+[![Build Status](https://travis-ci.com/aellison5505/node-sidh.svg?branch=master)](https://travis-ci.com/aellison5505/node-sidh)
+
 
 <a name="classes_index_sha3md"></a>
 
@@ -30,7 +32,7 @@
 
 ▸ **shake256**(`input`: Buffer, `outLength`: number): Promise\<Buffer>
 
-*Defined in [index.ts:177](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L177)*
+*Defined in [index.ts:177](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L177)*
 
 #### Parameters:
 
@@ -89,7 +91,7 @@ This class uses post-crypto SIDH and creates keyPairs and the shared secret.
 
 \+ **new SIDH**(): [SIDH](#classes_index_sidhmd)
 
-*Defined in [index.ts:23](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L23)*
+*Defined in [index.ts:23](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L23)*
 
 **Returns:** [SIDH](#classes_index_sidhmd)
 
@@ -99,7 +101,7 @@ This class uses post-crypto SIDH and creates keyPairs and the shared secret.
 
 •  **PrivateKey**: Buffer
 
-*Defined in [index.ts:20](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L20)*
+*Defined in [index.ts:20](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L20)*
 
 ___
 
@@ -107,7 +109,7 @@ ___
 
 •  **PublicKey**: Buffer
 
-*Defined in [index.ts:21](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L21)*
+*Defined in [index.ts:21](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L21)*
 
 ___
 
@@ -115,7 +117,7 @@ ___
 
 •  **SenderKey**: Buffer
 
-*Defined in [index.ts:22](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L22)*
+*Defined in [index.ts:22](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L22)*
 
 ___
 
@@ -123,7 +125,7 @@ ___
 
 •  **SenderPublic**: Buffer
 
-*Defined in [index.ts:23](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L23)*
+*Defined in [index.ts:23](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L23)*
 
 ## Accessors
 
@@ -131,7 +133,7 @@ ___
 
 • get **keyPair**(): [keys](#interfaces_index_keysmd)
 
-*Defined in [index.ts:63](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L63)*
+*Defined in [index.ts:63](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L63)*
 
 **Returns:** [keys](#interfaces_index_keysmd)
 
@@ -141,7 +143,7 @@ ___
 
 • get **senderKeyPair**(): [keys](#interfaces_index_keysmd)
 
-*Defined in [index.ts:70](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L70)*
+*Defined in [index.ts:70](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L70)*
 
 **Returns:** [keys](#interfaces_index_keysmd)
 
@@ -151,7 +153,7 @@ ___
 
 ▸ **createKeyPair**(): Promise\<[keys](#interfaces_index_keysmd)>
 
-*Defined in [index.ts:47](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L47)*
+*Defined in [index.ts:47](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L47)*
 
 Creates a key pair
 
@@ -165,7 +167,7 @@ ___
 
 ▸ **createPubA**(`privateKey`: Buffer): Promise\<Buffer>
 
-*Defined in [index.ts:77](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L77)*
+*Defined in [index.ts:77](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L77)*
 
 #### Parameters:
 
@@ -181,7 +183,7 @@ ___
 
 ▸ **randomBytes**(`length`: number): Promise\<Buffer>
 
-*Defined in [index.ts:36](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L36)*
+*Defined in [index.ts:36](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L36)*
 
 Produces random bytes
 
@@ -199,7 +201,7 @@ ___
 
 ▸ **senderKeys**(): Promise\<[keys](#interfaces_index_keysmd)>
 
-*Defined in [index.ts:84](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L84)*
+*Defined in [index.ts:84](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L84)*
 
 **Returns:** Promise\<[keys](#interfaces_index_keysmd)>
 
@@ -209,7 +211,7 @@ ___
 
 ▸ **sharedKey**(`PrivateKey`: Buffer, `SenderPublicKey`: Buffer): Promise\<Buffer>
 
-*Defined in [index.ts:100](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L100)*
+*Defined in [index.ts:100](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L100)*
 
 #### Parameters:
 
@@ -226,7 +228,7 @@ ___
 
 ▸ **sharedKeySender**(`SenderPrivateKey`: Buffer, `PublicKey`: Buffer): Promise\<Buffer>
 
-*Defined in [index.ts:106](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L106)*
+*Defined in [index.ts:106](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L106)*
 
 #### Parameters:
 
@@ -279,7 +281,7 @@ This class implements the SIKE CryptoPQ.
 
 \+ **new SIKE**(): [SIKE](#classes_index_sikemd)
 
-*Defined in [index.ts:119](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L119)*
+*Defined in [index.ts:119](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L119)*
 
 **Returns:** [SIKE](#classes_index_sikemd)
 
@@ -289,7 +291,7 @@ This class implements the SIKE CryptoPQ.
 
 •  **PrivateKey**: Buffer
 
-*Defined in [index.ts:118](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L118)*
+*Defined in [index.ts:118](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L118)*
 
 ___
 
@@ -297,7 +299,7 @@ ___
 
 •  **PublicKey**: Buffer
 
-*Defined in [index.ts:119](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L119)*
+*Defined in [index.ts:119](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L119)*
 
 ## Accessors
 
@@ -305,7 +307,7 @@ ___
 
 • get **keyPair**(): [keys](#interfaces_index_keysmd)
 
-*Defined in [index.ts:139](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L139)*
+*Defined in [index.ts:139](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L139)*
 
 **Returns:** [keys](#interfaces_index_keysmd)
 
@@ -315,7 +317,7 @@ ___
 
 ▸ **createKeyPair**(): Promise\<[keys](#interfaces_index_keysmd)>
 
-*Defined in [index.ts:129](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L129)*
+*Defined in [index.ts:129](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L129)*
 
 **Returns:** Promise\<[keys](#interfaces_index_keysmd)>
 
@@ -327,7 +329,7 @@ ___
 
 ▸ **decrypt**(`privateKey`: Buffer, `cipherBytes`: Buffer): Promise\<Buffer>
 
-*Defined in [index.ts:166](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L166)*
+*Defined in [index.ts:166](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L166)*
 
 Takes the privatekey and ciphered bytes and returns the decrypted bytes
 
@@ -348,7 +350,7 @@ ___
 
 ▸ **encrypt**(`publicKey`: Buffer): Promise\<[Buffer, Buffer]>
 
-*Defined in [index.ts:151](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L151)*
+*Defined in [index.ts:151](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L151)*
 
 Takes a public key and returns 32 bytes of shared data, and the bytes encrypted.
 
@@ -405,7 +407,7 @@ PublicKey: Buffer
 
 •  **PrivateKey**: Buffer
 
-*Defined in [index.ts:11](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L11)*
+*Defined in [index.ts:11](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L11)*
 
 ___
 
@@ -413,7 +415,7 @@ ___
 
 •  **PublicKey**: Buffer
 
-*Defined in [index.ts:12](https://github.com/aellison5505/node-sidh/blob/db9f728/src/index.ts#L12)*
+*Defined in [index.ts:12](https://github.com/aellison5505/node-sidh/blob/b34f719/src/index.ts#L12)*
 
 
 <a name="modules_index_md"></a>
