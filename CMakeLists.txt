@@ -27,7 +27,7 @@ ELSE()
 ENDIF()
 
 IF(WIN32)
-    add_compile_options(/O2 /D_GENERIC_ /D${arch}  /D__WINDOWS__)
+    add_compile_options(/O2 /D_GENERIC_ /D${arch} /Wd4244 /D__WINDOWS__)
     add_definitions(/D__WINDOWS__ /D${arch} /D_GENERIC_)
     set(blib Bcrypt.lib)
 ELSE()
