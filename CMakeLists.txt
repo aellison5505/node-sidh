@@ -1,29 +1,46 @@
 cmake_minimum_required(VERSION 2.8)
 
-add_definitions(-DNAPI_EXPERIMENTAL)
-add_definitions(-DNAPI_VERSION=3)
-#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
-
-
-IF(WIN32)
-    add_compile_options(/O2 /D_AMD64_ /D_GENERIC_  /D__WINDOWS__)
-    add_definitions(/D__WINDOWS__ /D_AMD64_ /D_GENERIC_)
-    set(blib Bcrypt.lib)
-ELSE()
-    add_compile_options(-O3 -D_AMD64_ -D_GENERIC_  -D__NIX__ -march=native)
-    add_definitions(-D__NIX__  -D_AMD64_ -D_GENERIC_)
-    set(blib )
-ENDIF()
-
 project(lib-SI CXX)
 
-message(${CMAKE_HOST_SYSTEM_NAME}-${CMAKE_HOST_SYSTEM_PROCESSOR})
+add_definitions(-DNAPI_EXPERIMENTAL)
 
+add_definitions(-DNAPI_VERSION=3)
+
+IF(${CMAKE_SYSTEM_PROCESSOR} MATCHES "64")
+    IF(${CMAKE_SYSTEM_PROCESSOR} MATCHES "AMD" OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES "amd" OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES "X86" OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86")
+        set(arch _AMD64_)
+    ELSEIF(${CMAKE_SYSTEM_PROCESSOR} MATCHES "arm" OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES "ARM")
+        set(arch _ARM64_)
+    ELSE()
+        message("Unsupported ARCHITECTURE")
+        return()
+    ENDIF()
+ELSEIF(${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86" OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86") 
+    set(arch _X86_)
+ELSEIF(${CMAKE_SYSTEM_PROCESSOR} MATCHES "arm" OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES "ARM")
+    set(arch _ARM_)
+ELSEIF(${CMAKE_SYSTEM_PROCESSOR} MATCHES "390")
+    set(arch _S390X_)
+ELSE()
+    message("Unsupported ARCHITECTURE")
+    return()
+ENDIF()
+
+IF(WIN32)
+    add_compile_options(/O2 /D_GENERIC_ /D${arch}  /D__WINDOWS__)
+    add_definitions(/D__WINDOWS__ /D${arch} /D_GENERIC_)
+    set(blib Bcrypt.lib)
+ELSE()
+    add_compile_options(-O3 -D_GENERIC_ -D${arch} -D__NIX__ -march=native)
+    add_definitions(-D__NIX__ -D${arch} -D_GENERIC_)
+    set(blib )
+ENDIF()
 
 set(CMAKE_POSITION_INDEPENDENT_CODE true)
 
 set (CMAKE_CXX_STANDARD 11)
 
+message(${CMAKE_HOST_SYSTEM_NAME}-${CMAKE_HOST_SYSTEM_PROCESSOR})
 
 add_subdirectory(deps)
 add_subdirectory(src)
@@ -39,12 +56,6 @@ target_link_libraries(node-sidh ${CMAKE_JS_LIB} ${blib})
 target_link_libraries(node-sike ${CMAKE_JS_LIB} ${blib})
 
 target_link_libraries(node-sha3 ${CMAKE_JS_LIB} ${blib})
-
-#target_compile_definitions(node-sidh PUBLIC ${compDef})
-
-#target_compile_definitions(node-sike PUBLIC ${compDef})
-
-#target_compile_definitions(node-sha3 PUBLIC ${compDef})
 
 set_target_properties(node-sidh node-sike node-sha3 PROPERTIES PREFIX "" SUFFIX ".node")
 
