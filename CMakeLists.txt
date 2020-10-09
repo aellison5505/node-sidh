@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project(lib-SI CXX)
 
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+
 add_definitions(-DNAPI_EXPERIMENTAL)
 
 add_definitions(-DNAPI_VERSION=3)

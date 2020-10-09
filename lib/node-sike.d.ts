@@ -1,26 +1,11 @@
 
-    /**
-     * Creates P751 SIKE Key Pair
-     * @param cb callback
-     * @returns PrivateKey, PublicKey
-     */
-    export function createKEMKeyPair(cb: (PrivateKey: Buffer, PublicKey: Buffer) => void)
+export const SECRETKEYBYTES: number;
+export const PUBLICKEYBYTES: number;
+export const CIPHERTEXTBYTES: number;
+export const CRYPTO_BYTES: number;
 
-    /**
-     * Takes Public key and returns Created SharedBytes, Encrypted shared bytes.
-     * @param PublicKey 
-     * @param cb 
-     * 
-     * @returns SharedBytes[32], CryptoBytes
-     */
-   // export function KEMEncrypt(PublicKey: Buffer)
-     export function KEMEncrypt(PublicKey: Buffer,cb: (SharedBytes: Buffer, CryptoBytes: Buffer) => void)
-    /**
-     * Takes private key and Encrypted bytes; returns decrypted 
-     * @param PrivateKey 
-     * @param CryptoBytes 
-     * @param cb 
-     * 
-     * @returns SharedBytes
-     */
-    export function KEMDecrypt(PrivateKey: Buffer,CryptoBytes: Buffer, cb: (SharedBytes: Buffer) => void)
+export function createKeyPair(publicKey: Buffer, privateKey: Buffer): number;
+
+export function encrypt(crypto: Buffer, secret: Buffer, publicKey: Buffer): number;
+
+export function decrypt(secret: Buffer, crypto: Buffer, privateKey: Buffer): number;

@@ -1,6 +1,7 @@
 
 import { createKeyPairA, createKeyPairB, sharedKeyA, sharedKeyB, createPublicA, random }  from '../lib/node-sidh';
-import { createKEMKeyPair, KEMEncrypt, KEMDecrypt } from '../lib/node-sike';
+import { CIPHERTEXTBYTES, CRYPTO_BYTES, PUBLICKEYBYTES, SECRETKEYBYTES, createKeyPair, decrypt, encrypt } from '../lib/node-sike';
+
 import { shake256 } from '../lib/node-sha3';
 /**
  * Keys interface
@@ -11,6 +12,12 @@ export interface keys {
     PrivateKey: Buffer;
     PublicKey: Buffer;
 }
+
+export interface encRet {
+    secureKey: Buffer,
+    cipherBytes: Buffer
+}
+
 
 /**
  * This class uses post-crypto SIDH and creates keyPairs and the shared secret.
@@ -115,12 +122,9 @@ export class SIDH {
  * This class implements the SIKE CryptoPQ.
  */
 export class SIKE {
-    PrivateKey: Buffer;
-    PublicKey: Buffer;
 
     constructor() {
-        this.PrivateKey = Buffer.alloc(0);
-        this.PublicKey = Buffer.alloc(0);
+       
     }
 
     /**
@@ -128,19 +132,14 @@ export class SIKE {
      */
     createKeyPair(): Promise<keys> {
         return new Promise<keys>((ret) => {
-            createKEMKeyPair((PriKey: Buffer, PubKey: Buffer) => {
-                this.PrivateKey = PriKey,
-                this.PublicKey = PubKey
-                ret(this.keyPair);
+            let pubKey = Buffer.alloc(PUBLICKEYBYTES);
+            let priKey = Buffer.alloc(SECRETKEYBYTES);
+            createKeyPair(pubKey, priKey);
+            ret({
+                PrivateKey: priKey,
+                PublicKey: pubKey
             });
         });
-    }
-
-    get keyPair(): keys {
-        return {
-            PrivateKey: this.PrivateKey,
-            PublicKey: this.PublicKey
-        }
     }
 
     /**
@@ -148,12 +147,15 @@ export class SIKE {
      * @param publicKey from SIKE key pair
      * @returns [shared bytes, Crypto Bytes]
      */
-    encrypt(publicKey: Buffer): Promise<[Buffer, Buffer]> {
-        return new Promise<[Buffer, Buffer]>((ret) => {
-            KEMEncrypt(publicKey,(sBytes, cBytes) =>{
-                ret([sBytes, cBytes]);
-            })
-                
+    encryptKey(publicKey: Buffer):  Promise<encRet> {
+        return new Promise<encRet>((ret) => { 
+            let ct = Buffer.alloc(CIPHERTEXTBYTES);
+            let sKey = Buffer.alloc(CRYPTO_BYTES);
+            encrypt(ct, sKey, publicKey);
+            ret({
+                secureKey: sKey,
+                cipherBytes: ct
+            });
         });
     }
 
@@ -163,11 +165,11 @@ export class SIKE {
      * @param cipherBytes The encrypted bytes.
      * @returns The decrypted shared bytes.
      */
-    decrypt(privateKey: Buffer, cipherBytes: Buffer) {
-        return new Promise<Buffer>((ret) => {
-            KEMDecrypt(privateKey, cipherBytes, (sBytes) => {
-                ret(sBytes);
-            })
+    decryptKey(privateKey: Buffer, cipherBytes: Buffer):  Promise<Buffer> {
+        return new Promise<Buffer>((ret) => { 
+            let sKey = Buffer.alloc(CRYPTO_BYTES);
+            decrypt(sKey, cipherBytes, privateKey);
+            ret(sKey);
         });
     }
 }

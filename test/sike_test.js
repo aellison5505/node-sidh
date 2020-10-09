@@ -20,13 +20,9 @@ describe('SIKE TEST', () => {
         
         
        before(async () => {
-       // this.keyPair ={
-       //     PrivateKey: Buffer.from(privateKey, 'base64'),
-       //     PublicKey : Buffer.from(publicKey, 'base64')
-        //}
+      
           this.keyPair = await this.kem.createKeyPair();
-      //  console.log('pri', this.keyPair.PrivateKey.toString('base64'));
-      //  console.log('pub', this.keyPair.PublicKey.toString('base64'));
+    
        });
 
        it('Private Key', () => {
@@ -38,29 +34,29 @@ describe('SIKE TEST', () => {
     }); 
 
     describe('Encrypt', () => {
-           before(async () => {
-            [this.sharedSecret, this.cryptoBytes] = await this.kem.encrypt(this.keyPair.PublicKey);
-           });
-    
-           it('shared secret', () => {
+        before(async () => {
+            const retVars = await this.kem.encryptKey(this.keyPair.PublicKey);
+            this.cryptoBytes = retVars.cipherBytes;
+            this.sharedSecret= retVars.secureKey;
+        });
+        it('shared secret', () => {
             expect(this.sharedSecret.length).to.be.equal(32); 
-           });
-           it('Crypto Bytes', () => {
+        });
+        it('Crypto Bytes', () => {
             expect(this.cryptoBytes.length).to.be.equal(410); 
-           });
+        });
     });
 
     describe('Decrypt', () => {
         before(async () => {
-           this.retBytes = await this.kem.decrypt(this.keyPair.PrivateKey, this.cryptoBytes);
+        this.retBytes = await this.kem.decryptKey(this.keyPair.PrivateKey, this.cryptoBytes);
         });
- 
+
         it('shared secret', () => {
-         expect(this.retBytes.length).to.be.equal(32); 
+        expect(this.retBytes.length).to.be.equal(32); 
         });
         it('Secrets are equal', () => {
-         expect(this.retBytes.toString('hex')).to.be.equal(this.sharedSecret.toString('hex')); 
+        expect(this.retBytes.toString('hex')).to.be.equal(this.sharedSecret.toString('hex')); 
         });
- });
-    
+    });
 });
